@@ -22,11 +22,19 @@ namespace rsync
 	}
 	DownloadThread::~DownloadThread()
 	{
-		
 	}
+
+	void DownloadThread::createLocalDir(std::string &remoteDir, std::string &localDir)
+	{
+		size_t begin_pos = remoteDir.find_first_of("/");
+		size_t end_pos = remoteDir.find_last_of("/");
+		localDir = localDir + remoteDir.substr(begin_pos, end_pos - begin_pos);
+	}
+
 
 	void DownloadThread::run()
 	{
+		createLocalDir(d_remoteDir, d_localDir);
 		SocketIO socketIO;
 		socketIO.connect(d_server, 873, d_usr, d_password, d_module);
 		Client client(&socketIO, "rsync", 30, &d_cancelFlag);

@@ -560,26 +560,23 @@ int Client::download(const char *localTop, const char *remoteTop, const char *te
     std::string remotePath = remoteTop;
     std::string localPath = localTop;
 
-    // We can actually handle the case where 'localTop' points to a single file.暂时不可以
+    // We can actually handle the case where 'localTop' points to a single file.
     bool singleFile = (remotePath[remotePath.size() - 1] != '/');
 
-#if 1 //download singleFiles
-	size_t pos = remotePath.find_first_of("/");
-	std::string singleFilePath = localPath + remotePath.substr(pos, remotePath.size() - pos);
-	while (singleFile && !PathUtil::exists(localPath.c_str()))
-	{
-		PathUtil::createDirectory("E:/fff");
-		PathUtil::createDirectory("E:/fff/kkk");
-	}
+#if 0 //构建localPath
+	size_t begin_pos = remotePath.find_last_of("/");
+	size_t end_pos = remotePath.find_last_of("/");
+	localPath = localTop + remotePath.substr(begin_pos, end_pos - begin_pos);
 #endif
 
     while (localPath[localPath.size() - 1] == '/') {
         localPath = localPath.substr(0, localPath.size() - 1);
     }
-	//PathUtil::createDirectory(localPath.c_str());
-    if (!singleFile && !PathUtil::exists(localPath.c_str())) {
+
+    if (/*!singleFile && */!PathUtil::exists(localPath.c_str())) {
         PathUtil::createDirectory(localPath.c_str());
     }
+
     start(remotePath.c_str(), /*downloading=*/true, /*recursive=*/true, /*deleting=*/false);//login  设置rsync命令参数,socket 连接
     std::vector<Entry*> remoteFiles;
     Util::EntryListReleaser remoteFilesReleaser(&remoteFiles);
@@ -645,7 +642,6 @@ int Client::download(const char *localTop, const char *remoteTop, const char *te
         localFiles.push_back(entry);
             }
         }
-
         std::sort(localFiles.begin() + 1, localFiles.end(), Entry::compareGlobally);
     } else {
         PathUtil::listDirectory(localPath.c_str(), "", &localFiles, &localDirectories, d_protocol > 29);

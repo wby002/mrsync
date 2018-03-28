@@ -74,7 +74,7 @@ BOOL CtrlHandler(DWORD fdwCtrlType)
 
 using namespace rsync;
 
-#ifdef SINGLE_THREAD
+#ifdef NO_THREADx
 
 int main(int argc, char *argv[])
 {
@@ -146,9 +146,6 @@ int main(int argc, char *argv[])
 
 	libssh2_exit();
 	SocketUtil::cleanup();
-
-
-	//return app.exec();
 	return 0;
 }
 #endif
@@ -221,7 +218,7 @@ int main(int argc, char *argv[])
 }
 #endif
 
-#ifdef TEST_THREADx
+#ifdef TEST_THREAD
 
 int main(int argc, char *argv[])
 {
@@ -239,30 +236,40 @@ int main(int argc, char *argv[])
 			return 0;
 	}
 
-	const char *action = "download";
-	const char *server = "192.168.10.155";
-	const char *user = "WBY";
-	const char *password = "070122";
+	const char *action = argv[1];
+	const char *server = argv[2];
+	const char *user = argv[3];
+	const char *password = argv[4];
 	// Make sure remoteDir ends with '/' to indicate it is a directory
-	std::string remoteDir = "common/";
+	std::string remoteDir = argv[5];
 	
+	/*
 	if (remoteDir.back() != '/') {
 		remoteDir = remoteDir + "/";
 	}
-	
-	std::string localDir = "E:/RsyncTest211";//argv[6];
-	const char* module = "common";//argv[7];
+	*/
 
+	std::string localDir = argv[6];//argv[6];
+	const char* module = argv[7];//argv[7];
+	std::string remoteDir1 = argv[8];
+	std::string localDir1 = argv[9];
+	
+	//取出远程文件
 	/*
 	SocketIO socketio;
 	socketio.connect(server, 873, user, password, module);
 	Client client(&socketio, "rsync", 30, &g_cancelFlag);
 	std::vector<Entry*> remoteFiles;
 	client.getRemoteFiles(remoteDir.c_str(), &remoteFiles);
+	std::cout << remoteFiles.size() << std::endl;
 	*/
+
 	DownloadThread downloadThread(action, server, user, password, remoteDir, localDir, module, g_cancelFlag);
 	downloadThread.start();
+	DownloadThread downloadThread1(action, server, user, password, remoteDir1, localDir1, module, g_cancelFlag);
+	downloadThread1.start();
 	downloadThread.wait();
+	downloadThread1.wait();
 
 	libssh2_exit();
 	SocketUtil::cleanup();

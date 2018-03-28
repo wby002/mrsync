@@ -316,20 +316,46 @@ bool PathUtil::isDirectory(const char *fullPath)
 
 bool PathUtil::createDirectory(const char *fullPath, bool hidden)
 {
-    std::basic_string<wchar_t> path = convertToUTF16(fullPath);
-    if (CreateDirectoryW(path.c_str(), NULL) || GetLastError() == ERROR_ALREADY_EXISTS) {
-        
-        if (hidden) {
-            DWORD attributes = GetFileAttributesW(path.c_str());
-            if ( attributes == INVALID_FILE_ATTRIBUTES) {
-                return false;
-            }
-            SetFileAttributesW(path.c_str(), attributes | FILE_ATTRIBUTE_HIDDEN);
-        }
-        return true;
-    }
+//递归创建目录
+	std::string temporery = std::string(fullPath);
+	size_t begin_pos = temporery.find_first_of("/");
+	size_t second_pos = temporery.find_first_of("/", begin_pos + 1);
+	size_t end_pos = temporery.find_last_of("/");
+	size_t end = temporery.size();
 
-    return false;
+	while (end_pos >= begin_pos) {
+		if (end_pos > begin_pos && !exists(temporery.substr(0, second_pos).c_str())) {
+			std::basic_string<wchar_t> path = convertToUTF16(temporery.substr(0, second_pos).c_str());
+			if (CreateDirectoryW(path.c_str(), NULL) || GetLastError() == ERROR_ALREADY_EXISTS) {
+
+				if (hidden) {
+					DWORD attributes = GetFileAttributesW(path.c_str());
+					if (attributes == INVALID_FILE_ATTRIBUTES) {
+						return false;
+					}
+					SetFileAttributesW(path.c_str(), attributes | FILE_ATTRIBUTE_HIDDEN);
+				}
+			}
+		}
+
+		if (end_pos == begin_pos && !exists(temporery.substr(0, end).c_str())) {
+			std::basic_string<wchar_t> path = convertToUTF16(temporery.substr(0, end).c_str());
+			if (CreateDirectoryW(path.c_str(), NULL) || GetLastError() == ERROR_ALREADY_EXISTS) {
+
+				if (hidden) {
+					DWORD attributes = GetFileAttributesW(path.c_str());
+					if (attributes == INVALID_FILE_ATTRIBUTES) {
+						return false;
+					}
+					SetFileAttributesW(path.c_str(), attributes | FILE_ATTRIBUTE_HIDDEN);
+				}
+				return true;
+			}
+		}
+			begin_pos = temporery.find_first_of("/", begin_pos + 1);
+			second_pos = temporery.find_first_of("/", second_pos + 1);
+	}
+	return false;
 }
 
 bool PathUtil::setModifiedTime(const char *fullPath, int64_t time)

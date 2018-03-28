@@ -3,7 +3,7 @@
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <QTDIR>C:\Qt\Qt5.7.1_32\5.7\msvc2015</QTDIR>
-    <LocalDebuggerCommandArguments>download  192.168.10.155  WBY  070122  common/haha/1.txt  E:/MRsyncTestSingleFile</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>download  192.168.239.134   WBY  070122  ./specs/ E:/test  "common" ./build/  E:/test</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerEnvironment>PATH=$(QTDIR)\bin%3b$(PATH)</LocalDebuggerEnvironment>
   </PropertyGroup>

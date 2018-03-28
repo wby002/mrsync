@@ -20,6 +20,7 @@ public:
 							const char* password, std::string remoteDir,
 							std::string localDir, const char *module, int cancelFlag);
 	~DownloadThread();
+	void createLocalDir(std::string &remoteDir, std::string &localDir);
 	void stop();
 protected:
 	void run();
