@@ -16,7 +16,7 @@ class DownloadThread : public QThread
 {
 	Q_OBJECT
 public:
-	explicit DownloadThread(const char *action, const char *server, const char *usr, 
+	explicit DownloadThread(const char *server, const char *usr, 
 							const char* password, std::string remoteDir,
 							std::string localDir, const char *module, int cancelFlag);
 	~DownloadThread();
@@ -25,7 +25,6 @@ public:
 protected:
 	void run();
 private:
-	const char *d_action;
 	const char *d_server;
 	const char *d_usr;
 	const char *d_password;
@@ -37,9 +36,7 @@ private:
 };
 
 }//namesapce rsync
-
-
-#endif
+#endif //end of qthread
 
 #ifdef TEST_THREADPOOLx
 #include <qobject.h>
@@ -70,9 +67,10 @@ namespace rsync {
 		}
 		~DownloadThread()
 		{
-
+			
 		}
 		void run();
+		void createLocalDir(std::string &remoteDir, std::string &localDir);
 	private:
 		const char *d_action;
 		const char *d_server;
@@ -82,9 +80,9 @@ namespace rsync {
 		std::string d_localDir;
 		const char *d_module;
 		int d_cancelFlag;
-
 	};
 }
-#endif 
+#endif //end of qthreadpool
+
 #endif
 

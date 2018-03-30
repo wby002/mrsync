@@ -13,6 +13,8 @@ e:\renderg\qmrsync2\qmrsync2\debug\rsync_log.obj
 e:\renderg\qmrsync2\qmrsync2\debug\rsync_io.obj
 e:\renderg\qmrsync2\qmrsync2\debug\rsync_file.obj
 e:\renderg\qmrsync2\qmrsync2\debug\rsync_entry.obj
+e:\renderg\qmrsync2\qmrsync2\debug\downloadmain.obj
+e:\renderg\qmrsync2\qmrsync2\debug\download.obj
 e:\renderg\qmrsync2\qmrsync2\debug\rsync_client.obj
 e:\renderg\qmrsync2\qmrsync2\generatedfiles\debug\moc_download_thread.cpp
 e:\renderg\qmrsync2\win32\debug\qmrsync2.ilk
@@ -25,6 +27,12 @@ e:\renderg\qmrsync2\qmrsync2\debug\qmrsync2.tlog\cl.write.1.tlog
 e:\renderg\qmrsync2\qmrsync2\debug\qmrsync2.tlog\custombuild.command.1.tlog
 e:\renderg\qmrsync2\qmrsync2\debug\qmrsync2.tlog\custombuild.read.1.tlog
 e:\renderg\qmrsync2\qmrsync2\debug\qmrsync2.tlog\custombuild.write.1.tlog
+e:\renderg\qmrsync2\qmrsync2\debug\qmrsync2.tlog\link.12444-cvtres.read.1.tlog
+e:\renderg\qmrsync2\qmrsync2\debug\qmrsync2.tlog\link.12444-cvtres.write.1.tlog
+e:\renderg\qmrsync2\qmrsync2\debug\qmrsync2.tlog\link.12444-rc.read.1.tlog
+e:\renderg\qmrsync2\qmrsync2\debug\qmrsync2.tlog\link.12444-rc.write.1.tlog
+e:\renderg\qmrsync2\qmrsync2\debug\qmrsync2.tlog\link.12444.read.1.tlog
+e:\renderg\qmrsync2\qmrsync2\debug\qmrsync2.tlog\link.12444.write.1.tlog
 e:\renderg\qmrsync2\qmrsync2\debug\qmrsync2.tlog\link.command.1.tlog
 e:\renderg\qmrsync2\qmrsync2\debug\qmrsync2.tlog\link.read.1.tlog
 e:\renderg\qmrsync2\qmrsync2\debug\qmrsync2.tlog\link.write.1.tlog
