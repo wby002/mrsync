@@ -36,6 +36,7 @@
 #include <cstdio>
 #include <cstring>
 #include <ctime>
+#include <Windows.h>
 
 #include <qi/qi_build.h>
 
@@ -846,11 +847,14 @@ int Client::download(const char *localTop, const char *remoteTop, const char *te
                      entry->isLink() ? entry->getSymlink() : 0);
         }
     }
-
-    LOG_DEBUG(RSYNC_DOWNLOAD) << "Downloaded " << updated << " files; "
-                                << "total " << *d_totalBytes << " bytes, skipped " << *d_skippedBytes
-                                << " bytes, received " << *d_logicalBytes << "/" << *d_physicalBytes
-                                << " bytes" << LOG_END
+	//OutputDebugStringA("aaaa");
+	/*
+	std::cout << "Downloaded " << updated << " files; "
+		<< "total " << *d_totalBytes << " bytes, skipped " << *d_skippedBytes
+		<< " bytes, received " << *d_logicalBytes << "/" << *d_physicalBytes
+		<< " bytes" << std::endl;
+		*/
+	//OutputDebugStringA("bbbb");
     return updated;
 }
 

@@ -89,6 +89,7 @@
     <ClCompile Include="..\acrosync-library\rsync\rsync_util.cpp" />
     <ClCompile Include="download.cpp" />
     <ClCompile Include="downloadmain.cpp" />
+    <ClCompile Include="download_threadpool.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_download_thread.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -119,6 +120,7 @@
     <ClInclude Include="..\acrosync-library\testutil\testutil_newdeletemonitor.h" />
     <ClInclude Include="cmdline.h" />
     <ClInclude Include="download.h" />
+    <ClInclude Include="download_threadpool.h" />
     <CustomBuild Include="download_thread.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>

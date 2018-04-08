@@ -90,6 +90,9 @@
     <ClCompile Include="downloadmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="download_threadpool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\acrosync-library\rsync\rsync_client.h">
@@ -138,6 +141,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="download.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="download_threadpool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

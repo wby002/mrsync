@@ -28,22 +28,24 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <sstream>
-#include <qthread.h>
-
-//#include <testutil/testutil_assert.h>
-//#include <testutil/testutil_newdeletemonitor.h> 
 
 #include "download_thread.h"
+#include "download_threadpool.h"
 
 //qi: TEST_PROGRAM = 1
 //qi: LDFLAGS += -lssh2 -lssl -lcrypto -lz
 #include <qi/qi_build.h>
 #include <crtdbg.h>
+namespace rsync {
+	int qthreadDownload(const char* server, const char* user,
+		const char* password, std::string remoteDir,
+		std::string localDir, const char* module,
+		int g_cancelFlag, QQueue<std::string> downloadFiles);
 
-int qthreadDownload(const char* server, const char* user,
-	const char* password, std::string remoteDir,
-	std::string localDir, const char* module,
-	int g_cancelFlag, QQueue<std::string> downloadFiles);
+	int qthreadpoolDownload(const char* server, const char* user,
+		const char* password,std::string localDir, const char* module,
+		int g_cancelFlag, QQueue<std::string> downloadFiles, int threadpoolCount);
+}
+
 
 #endif

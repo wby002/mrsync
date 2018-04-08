@@ -1,6 +1,4 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppCommon.targets(171,5): warning MSB8018: No outputs specified for item "main.cbt". Its custom build command will be skipped.
-  download.cpp
-  downloadmain.cpp
-  正在生成代码...
+  rsync_client.cpp
   QMrsync2.vcxproj -> E:\renderg\QMrsync2\Win32\Debug\QMrsync2.exe
   QMrsync2.vcxproj -> E:\renderg\QMrsync2\Win32\Debug\QMrsync2.pdb (Full PDB)
